@@ -5,7 +5,6 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
-import numpy as np
 
 class Page(t.Frame):
     def __init__(self, *args, **kwargs):
@@ -109,67 +108,7 @@ class PageTwo(Page):
             w=csv.writer(f, delimiter=',',quoting=csv.QUOTE_ALL)
             w.writerow([categories])
             f.close()
-                
-#class PageThree(Page):
-#    def __init__ (self):
-#        Page.__init__(self)
-#        
-#        titel3 = ("Spell Check")
-#        
-#        message_titel3 = t.Label(self, text = titel3)
-#        message_titel3.config(font = ('calibri', 35, 'bold'))
-#        message_titel3.place(anchor = 'e', relx = .5 , rely = .2)
-#        
-##        catbut = t.Button (self, text = "Categorize My Response", command = self.showinput1)
-##        catbut.place(anchor = 'e', relx= .5, rely = .7)
-#        
-##    def showinput1(self):
-##        
-###        tekstje = input[0]
-###        ttt = t.Label(self, text = tekstje)
-###        ttt.config(font = ('calibiri', 20, 'bold'))
-###        ttt.place(anchor = 'e', relx = .5, rely = .8)
-##        
-###        t.Label(self, text = input[1])  
-##        
-##        var = t.StringVar()
-##        var.set(input[0])
-##        choices = ['a', 'b']
-##        option = t.OptionMenu(self, var, *choices, command = self.showinput2)
-##        option.place(anchor = 'e', relx = .5, rely = .7)
-##
-##    def showinput2(self):
-##        
-###        tekstje = input[0]
-###        ttt = t.Label(self, text = tekstje)
-###        ttt.config(font = ('calibiri', 20, 'bold'))
-###        ttt.place(anchor = 'e', relx = .5, rely = .8)
-##        
-###        t.Label(self, text = input[1])  
-##        
-##        var = t.StringVar()
-##        var.set(input[1])
-##        choices = ['a', 'b']
-##        option = t.OptionMenu(self, var, *choices)
-##        option.place(anchor = 'e', relx = .5, rely = .7)
-#        
-#        vraag1 = ('You typed "harig". Did you mean "haring" ? ')
-#        
-#        message_vraag1 = t.Label(self, text = vraag1)
-#        message_vraag1.config(font=('times', 24, 'italic'))
-#        message_vraag1.place(anchor = 'center', relx = .425 , rely = .3)
-#        
-#        v = t.StringVar()
-#        
-#        yesbutton = t.Radiobutton(self, text = "Yes", variable = v, value = 1, indicatoron = 0, width = 10)
-#        yesbutton.config(font = ('times', 20, 'italic'), bg = 'light steel blue')
-#        yesbutton.place(anchor = 'center', relx = .425, rely = .5)
-#        
-#        nobutton = t.Radiobutton(self, text = "No", variable = v, value = 0, indicatoron = 0, width = 10)
-#        nobutton.config(font = ('times', 20, 'italic'), bg = 'light steel blue')
-#        nobutton.place(anchor = 'center', relx = .425, rely = .6)
-#        nobutton.deselect()
-#        
+        
 class PageThree(Page):
     def __init__ (self):
         Page.__init__(self)
@@ -183,17 +122,6 @@ class PageThree(Page):
         network_button = t.Button(self, text = "Make My Network", command = self.network)
         network_button.config(bg = '#F8B0AE', font = ('calibri light', 20))
         network_button.place(anchor ='center', relx = .45, rely = .5)
-        
-        ##################
-        #Specifying Edges
-#        data = np.array([["Hond", 'Pet'],
-#                ["Kat", "Pet"],
-#                ["muis", 'knaagdier'],
-#                ["cavia", "knaagdier"],
-#                ["Gorilla", "Africa"]])
-#        
-#
-#        df = pd.DataFrame(data=data)
 
     def network(self):
         global edges
@@ -216,16 +144,10 @@ class PageThree(Page):
         ## NETWORK PLOTTING
         graph = edges
         
-        f = plt.figure(figsize=(8,5))
+        f = plt.figure(figsize=(8,4))
         a = f.add_subplot(111)
         plt.axis('off')
-        
-        ###NETWORK
-        # the networkx part
-#        G=nx.complete_graph(5)
-#        nx.draw_networkx(G,pos=nx.spring_layout(G),ax=a)
-            # extract nodes from graph
-            
+         
         nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
 
         # create networkx graph
@@ -247,14 +169,7 @@ class PageThree(Page):
         canvas = FigureCanvasTkAgg(f, master=self)
         canvas.show()
         canvas.get_tk_widget().pack(pady = 120, padx = 210, anchor = 'w')
-#
-#        def next_graph():
-#            if G.order():
-#                a.cla()
-#                G.remove_node(G.nodes()[-1])
-#                nx.draw(G, pos=nx.circular_layout(G), ax=a)
-#                canvas.draw()
-        
+
 class PageFour(t.Frame):
     def __init__(self, *args, **kwargs):
         Page.__init__(self, *args, **kwargs)
@@ -264,89 +179,6 @@ class PageFour(t.Frame):
         message_titel4 = t.Label(self, text = titel4)
         message_titel4.config(font = ('calibri', 35, 'bold'))
         message_titel4.place(anchor = 'center', relx = .45 , rely = .1)
-        
-        
-        
-#        welkomtekst = ("With this app you will gain knowledge on Optimal Foraging" 
-#        "Theory(OFT) for human semantic memory by your own experience. You will have " 
-#        "to participate in a verbal fluency task where you will be asked to name 50" 
-#        "objects from a specific category. We will try to visualize the retrieval" 
-#        "process underlying your responses to give you an idea of OFT based on your"  
-#        "own responses.""")
-#
-#        message = t.Message(self, text = welkomtekst, justify = 'center')
-#        message.config(justify = 'left', font=('calibri light', 20), width = 500)
-#        message.pack(pady = 50, padx = 500)
-#        
-#        
-#        network_button = t.Button(self, text = "Make My Network", command = self.network)
-#        network_button.place(anchor ='center', relx = .3, rely = .5)
-#        
-#        
-#        ##################
-#        #Specifying Edges
-##        data = np.array([["Hond", 'Pet'],
-##                ["Kat", "Pet"],
-##                ["muis", 'knaagdier'],
-##                ["cavia", "knaagdier"],
-##                ["Gorilla", "Africa"]])
-##        
-##
-##        df = pd.DataFrame(data=data)
-#
-#    def network(self):
-#        global edges
-#        df = pd.DataFrame(data = [animals, categories])
-#        df = df.transpose()
-#
-#        edges = []
-#        for st in range(len(df.index)-1):
-#                for comp in range(len(df.index)-1):
-#                    if df.iloc[st][1] == df.iloc[comp][1]:
-#                        edge = (df.iloc[st][0],df.iloc[comp][0])
-#                        edges.append(edge)
-#                        
-#        for sw_edge_st in range(0, len(df.index)-1):
-#            if df.iloc[sw_edge_st][1] != df.iloc[sw_edge_st+1][1]:
-#                edge = (df.iloc[sw_edge_st][0],df.iloc[sw_edge_st+1][0])
-#                edges.append(edge)            
-#        
-#        
-#        ## NETWORK PLOTTING
-#        graph = edges
-#        
-#        f = plt.figure(figsize=(5,4))
-#        a = f.add_subplot(111)
-#        plt.axis('off')
-#        
-#        ###NETWORK
-#        # the networkx part
-##        G=nx.complete_graph(5)
-##        nx.draw_networkx(G,pos=nx.spring_layout(G),ax=a)
-#            # extract nodes from graph
-#            
-#        nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
-#
-#        # create networkx graph
-#        G=nx.Graph()
-#
-#        # add nodes
-#        for node in nodes:
-#            G.add_node(node)
-#
-#        # add edges
-#        for edge in graph:
-#            G.add_edge(edge[0], edge[1])
-#
-#        # draw graph
-#        pos = nx.spring_layout(G)
-#        nx.draw(G, pos, node_color = '#F8CBAD', node_size = 2000, with_labels = True)
-#
-#        # a tk.DrawingArea
-#        canvas = FigureCanvasTkAgg(f, master=self)
-#        canvas.show()
-#        canvas.get_tk_widget().pack(anchor = 'w', pady = 120)
-#        
         
 
 class MainView(t.Frame):
@@ -388,7 +220,6 @@ class MainView(t.Frame):
         
 if __name__ == "__main__":
     root = t.Tk()
-#    root.attributes('-fullscreen', True)
     main = MainView(root)
     main.pack(side="bottom", fill="both", expand=True)
     root.wm_state('zoomed')

@@ -27,7 +27,7 @@ class PageOne(Page):
         titel = ("Personal visualization of Semantic Memory")
         
         titel_p1 = t.Message(self, text = titel)
-        titel_p1.config(font=('calibri', 40, 'bold'), borderwidth=2, 
+        titel_p1.config(font=('dense', 40), borderwidth=2, 
                         justify='center', width=1000, anchor='center')
         titel_p1.pack(pady=50)
 
@@ -51,15 +51,14 @@ class PageTwo(Page):
         Page.__init__(self)
         
         #Title
-        titel2 = ("Name 50 different animals")
+        titel2 = ("Verbal Fluency and Categorization")
         
         titel_p2 = t.Label(self, text = titel2)
-        titel_p2.config(font=('calibri', 40, 'bold'), justify='left')
+        titel_p2.config(font=('dense', 40), justify='left')
         titel_p2.grid(row=0, column=0, columnspan=5)
         
         #Task explanation
-        task = ("Please try to spell the animal names correctly. \n" 
-        "Do not use other sources to come up with the animal names.")
+        task = ("Name 25 animals from the top of your head")
         
         message_task = t.Label(self, text=task)
         message_task.config(justify='left', font=('calibri light', 20))
@@ -80,21 +79,21 @@ class PageTwo(Page):
         
         #Submit button to evoke command   
         submit = t.Button(self, text="Submit Animals", command=self.transfer)
-        submit.config(bg='#F8CBAD', font=('calibri light', 20))
+        submit.config(bg='#F8CBAD', font=('calibri light', 18))
         submit.grid(row=11, column=2)  
         
         #Task 2 explanation text
-        task2 = ("Now categorize your responses in the same order")
+        task2 = ("\n Now categorize your responses in the same order")
         
         message_task2 = t.Label(self, text = task2)
         message_task2.config(justify='left', font=('calibri light', 20))
-        message_task2.grid(row=12, column=0, columnspan=5, pady=10)
+        message_task2.grid(row=12, column=0, columnspan=5, pady=10, rowspan=2)
         
         #For loop to create 25 entry widgets for categories
         counter = 0
         self.entries_categories = []
         for c in range(5):
-            for n in range(13,17):
+            for n in range(14,18):
             # create entries list
                 self.entries_categories.append(t.Entry(self, width=25, 
                                                        font=(20), 
@@ -107,7 +106,7 @@ class PageTwo(Page):
         #Submit button to evoke command        
         submit2 = t.Button(self, text="Submit Categories", 
                            command=self.transfer2) 
-        submit2.config(bg='#F8CBAD', font=('calibri light', 20))
+        submit2.config(bg='#F8CBAD', font=('calibri light', 18))
         submit2.grid(row=18, column=2)  
         
     # Function that is evoked when submit button for animals is pressed
@@ -147,11 +146,11 @@ class PageThree(Page):
         titel4 = ("Your Personal Semantic Memory Network")
         
         message_titel4 = t.Label(self, text=titel4)
-        message_titel4.config(font=('calibri', 35, 'bold'))
+        message_titel4.config(font=('dense', 35))
         message_titel4.place(anchor='center', relx=.45, rely=.1)
         
         #Creating button that evokes network funtion
-        network_button = t.Button(self, text="Make My Network", 
+        network_button = t.Button(self, text="Plot My Network", 
                                   command=self.network)
         network_button.config(bg='#F8B0AE', font=('calibri light', 20))
         network_button.place(anchor='center', relx=.45, rely=.5)
@@ -215,9 +214,56 @@ class PageFour(t.Frame):
         # Title
         titel4 = ("Optimal Foreaging Theory for Semantic Memory")
         
-        message_titel4 = t.Label(self, text = titel4)
-        message_titel4.config(font=('calibri', 35, 'bold'))
-        message_titel4.place(anchor='center', relx =.45 , rely =.1)
+        message_titel4 = t.Label(self, text=titel4)
+        message_titel4.config(font=('dense', 35))
+        message_titel4.place(anchor='center', relx=.45 , rely=.05)
+        
+        # OFT explanation
+        exp = ("The human semantic memory is a system in the long-term memory"
+        "that processes factual  and \n conceptual knowledge about the world"
+        "around us. It is assumed that this knowledge is categorically \n"
+        "stored. That is, the information pieces are stored in clusters that"
+        "are highly related to each other. \n \n How pieces of information are"
+        "retrieved from this clustered semantic memory is still an unsolved \n"
+        "question. Often a verbal fluency task is done, to gain knowledge on"
+        "this retrieval process. This is a \n task that is similar to the task"
+        "you’ve done in this app! \n\n Optimal foraging theory suggests that"
+        "information in the semantic memory that is necessary for this \n"
+        "task, is accessed in clusters. That is, you probably first named"
+        "animals of one specific category, and \n then of another. If this is"
+        "the case, you will see clustering in your personal semantic network."
+        "\n What you also can see in your network, is that all clusters are"
+        "connected to each other. These \n  connections represents the"
+        "switching between clusters. As, in OFT it is suggested that when it"
+        "will \n  take too much effort to come up with a new animal in one"
+        "particular cluster, it is likely you will switch \n  to another"
+        "cluster. \n \n There are two types of switching. 1) Associative"
+        "switching is when you switch to another cluster by \n association." 
+        "Often this is when your last named animal is in two categories. 2)" 
+        "Total switching is when \n you switch to a totally new cluster. \n" 
+        "\n Look at your network. Can you figure out which types of switching" 
+        "you used?""")
+        
+        message_exp = t.Label(self, text=exp)
+        message_exp.config(font=('calibri light', 12))
+        message_exp.place(anchor='center', relx=.45, rely=.4)
+        
+# Create Thank You Page
+class PageFive(t.Frame):
+    def __init__(self, *args, **kwargs):
+        Page.__init__(self, *args, **kwargs)
+        
+        ty = ("Thank you for using this app")
+        
+        ty_message = t.Label(self, text=ty)
+        ty_message.config(font=('century gothic', 50))
+        ty_message.place(anchor='center', relx=.45, rely=.3)
+        
+        name = ('by Zenab Tamimy')
+        
+        name_message = t.Label(self, text=name)
+        name_message.config(font=('calibri light', 35, 'bold'), fg='#F8B0AE')
+        name_message.place(anchor='center', relx =.45, rely=.6)
         
 # Create Main View of the App by inheritance of all the pages into mainview
 class MainView(t.Frame):
@@ -229,6 +275,7 @@ class MainView(t.Frame):
         p2 = PageTwo()
         p3 = PageThree()
         p4 = PageFour()
+        p5 = PageFive()
         
         # Creating containter to place pages in
         container = t.Frame(self)
@@ -239,12 +286,14 @@ class MainView(t.Frame):
         p2.place(in_=container, relx=0.05, rely=0, relwidth=1, relheight=1)
         p3.place(in_=container, relx=0.05, rely=0, relwidth=1, relheight=1)  
         p4.place(in_=container, relx=0.05, rely=0, relwidth=1, relheight=1)
+        p5.place(in_=container, relx=0.05, rely=0, relwidth=1, relheight=1)
+
 
         # Creating buttons
         b1 = t.Button(p1, text="Continue >>", command=p2.lift)
         b2 = t.Button(p2, text="Continue >>", command=p3.lift)
         b3 = t.Button(p3, text="Continue >>", command=p4.lift)
-        b4 = t.Button(p4, text="End | ", command=p1.lift)
+        b4 = t.Button(p4, text="End | ", command=p5.lift)
         b4_back = t.Button(p4, text = '<< Network', command = p3.lift)
         
         # Button configurations
